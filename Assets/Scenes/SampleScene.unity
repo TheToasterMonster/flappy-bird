@@ -401,7 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5264c98a189946a99e1913f9198f3d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.1
+  speedMinMax: {x: 0.08, y: 0.15}
   jumpForce: 8
 --- !u!50 &749309539
 Rigidbody2D:
@@ -547,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pipePrefab: {fileID: 8640813535502507177, guid: 0a19b991c09034955a05da2493b86425, type: 3}
+  distBetween: 5
 --- !u!4 &1817496464
 Transform:
   m_ObjectHideFlags: 0

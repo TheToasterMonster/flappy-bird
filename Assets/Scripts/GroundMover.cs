@@ -15,6 +15,11 @@ public class GroundMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    private void FixedUpdate()
+    {
         transform.position = new Vector3(bird.transform.position.x + 6, -5, 0);
     }
 }

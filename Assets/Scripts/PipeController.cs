@@ -23,6 +23,11 @@ public class PipeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    private void FixedUpdate()
+    {
         float pipeRightEdge = top.transform.position.x + top.transform.localScale.x;
         float camLeftEdge = cam.transform.position.x - camWidth;
         if (pipeRightEdge + 1 < camLeftEdge)

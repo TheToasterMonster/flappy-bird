@@ -5,7 +5,7 @@ using System;
 
 public class BirdController : MonoBehaviour
 {
-    public float speed;
+    public Vector2 speedMinMax;
     public float jumpForce;
 
     private bool gameOver;
@@ -43,7 +43,7 @@ public class BirdController : MonoBehaviour
             return;
         }
 
-        transform.position += Vector3.right * speed;
+        transform.position += Vector3.right * Mathf.Lerp(speedMinMax.x, speedMinMax.y, ScoreKeeper.score / 50f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

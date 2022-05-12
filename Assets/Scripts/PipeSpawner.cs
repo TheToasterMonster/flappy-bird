@@ -5,11 +5,22 @@ using UnityEngine;
 public class PipeSpawner : MonoBehaviour
 {
     public GameObject pipePrefab;
+    public float distBetween;
+    private float currX;
+    private float camWidth;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(spawnPipe());
+        camWidth = Camera.main.orthographicSize * Camera.main.aspect;
+        currX = 6f;
+        
+        while (currX < Camera.main.transform.position.x + camWidth)
+        {
+            GameObject pipe = Instantiate(pipePrefab, new Vector3(currX, 0, 0), Quaternion.identity);
+            pipe.transform.parent = gameObject.transform;
+            currX += distBetween;
+        }
     }
 
     // Update is called once per frame
@@ -20,16 +31,11 @@ public class PipeSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-    }
-
-    IEnumerator spawnPipe()
-    {
-        while (transform.childCount <= 10)
+        if (currX < Camera.main.transform.position.x + camWidth + distBetween)
         {
-            GameObject pipe = Instantiate(pipePrefab, new Vector3(12 + Camera.main.transform.position.x, 0, 0), Quaternion.identity);
+            GameObject pipe = Instantiate(pipePrefab, new Vector3(currX, 0, 0), Quaternion.identity);
             pipe.transform.parent = gameObject.transform;
-            yield return new WaitForSecondsRealtime(1f);
+            currX += distBetween;
         }
     }
 }

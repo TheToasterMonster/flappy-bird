@@ -7,7 +7,7 @@ public class ScoreKeeper : MonoBehaviour
 {
     public GameObject bird;
 
-    private int score;
+    public static int score;
     private TextMeshPro scoreText;
 
     // Start is called before the first frame update
