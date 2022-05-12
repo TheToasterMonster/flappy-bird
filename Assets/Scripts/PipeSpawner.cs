@@ -17,9 +17,7 @@ public class PipeSpawner : MonoBehaviour
         
         while (currX < Camera.main.transform.position.x + camWidth)
         {
-            GameObject pipe = Instantiate(pipePrefab, new Vector3(currX, 0, 0), Quaternion.identity);
-            pipe.transform.parent = gameObject.transform;
-            currX += distBetween;
+            createPipe();
         }
     }
 
@@ -33,9 +31,14 @@ public class PipeSpawner : MonoBehaviour
     {
         if (currX < Camera.main.transform.position.x + camWidth + distBetween)
         {
-            GameObject pipe = Instantiate(pipePrefab, new Vector3(currX, 0, 0), Quaternion.identity);
-            pipe.transform.parent = gameObject.transform;
-            currX += distBetween;
+            createPipe();
         }
+    }
+
+    private void createPipe()
+    {
+        GameObject pipe = Instantiate(pipePrefab, new Vector3(currX, 0, 0), Quaternion.identity);
+        pipe.transform.parent = gameObject.transform;
+        currX += distBetween;
     }
 }
