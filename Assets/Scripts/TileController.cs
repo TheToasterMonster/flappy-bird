@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PipeController : MonoBehaviour
+public class TileController : MonoBehaviour
 {
     private Camera cam;
     private float camHalfWidth;
-    private float pipeHalfWidth;
 
-    private GameObject top;
+    public static float tileWidth = 1f;
+    private float tileHalfWidth;
 
     // Start is called before the first frame update
     void Start()
@@ -16,23 +16,20 @@ public class PipeController : MonoBehaviour
         cam = Camera.main;
         camHalfWidth = cam.orthographicSize * cam.aspect;
 
-        top = transform.GetChild(0).gameObject;
-        pipeHalfWidth = top.transform.localScale.x / 2;
-
-        transform.position = new Vector3(transform.position.x, transform.position.y + Random.Range(-2f, 2f), transform.position.z);
+        tileHalfWidth = tileWidth / 2;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void FixedUpdate()
     {
-        float pipeRightEdge = top.transform.position.x + pipeHalfWidth;
+        float tileRightEdge = transform.position.x + tileHalfWidth;
         float camLeftEdge = cam.transform.position.x - camHalfWidth;
-        if (pipeRightEdge + 1 < camLeftEdge)
+        if (tileRightEdge + 1 < camLeftEdge)
         {
             Destroy(gameObject);
         }
