@@ -45,7 +45,7 @@ public class TerrainController : MonoBehaviour
 
     void createTile()
     {
-        GameObject pipe = Instantiate(tilePrefab, new Vector3(currX, -4.093f, transform.position.z), Quaternion.identity);
+        GameObject pipe = Instantiate(tilePrefab, new Vector3(currX, -4.093f, transform.position.z - .02f), Quaternion.identity);
         pipe.transform.parent = transform;
         currX += tileWidth;
     }
