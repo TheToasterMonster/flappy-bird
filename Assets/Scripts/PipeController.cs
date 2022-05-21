@@ -22,12 +22,6 @@ public class PipeController : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y + Random.Range(-2f, 2f), transform.position.z);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         float pipeRightEdge = top.transform.position.x + pipeHalfWidth;

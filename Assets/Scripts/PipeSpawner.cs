@@ -23,12 +23,6 @@ public class PipeSpawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         if (currX < Camera.main.transform.position.x + camWidth + distBetween)

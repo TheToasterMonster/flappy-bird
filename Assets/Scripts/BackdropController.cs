@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileController : MonoBehaviour
+public class BackdropController : MonoBehaviour
 {
     private Camera cam;
     private float camHalfWidth;
 
-    public static float tileWidth = 1f;
-    private float tileHalfWidth;
+    public static float backdropWidth = 2f;
+    private float backdropHalfWidth;
 
     // Start is called before the first frame update
     void Start()
@@ -16,14 +16,14 @@ public class TileController : MonoBehaviour
         cam = Camera.main;
         camHalfWidth = cam.orthographicSize * cam.aspect;
 
-        tileHalfWidth = tileWidth / 2;
+        backdropHalfWidth = backdropWidth / 2;
     }
 
     private void FixedUpdate()
     {
-        float tileRightEdge = transform.position.x + tileHalfWidth;
+        float backdropRightEdge = transform.position.x + backdropHalfWidth;
         float camLeftEdge = cam.transform.position.x - camHalfWidth;
-        if (tileRightEdge + 1 < camLeftEdge)
+        if (backdropRightEdge + 1 < camLeftEdge)
         {
             Destroy(gameObject);
         }

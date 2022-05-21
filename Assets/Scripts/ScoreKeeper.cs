@@ -18,12 +18,6 @@ public class ScoreKeeper : MonoBehaviour
         scoreText = GetComponent<TextMeshPro>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void increaseScore()
     {
         score++;
