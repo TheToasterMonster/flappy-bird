@@ -13,7 +13,7 @@ public class TerrainController : MonoBehaviour
     public GameObject tilePrefab;
     public GameObject backdropPrefab;
 
-    public static float groundHeight;
+    public static float groundHeight = 2f;
 
     private float currXTile;
     private float currXBackdrop;
@@ -21,8 +21,7 @@ public class TerrainController : MonoBehaviour
     private float tileWidth;
     private float backdropWidth;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         camWidth = Camera.main.orthographicSize * Camera.main.aspect;
         currXTile = -10f;
@@ -46,11 +45,21 @@ public class TerrainController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!MenuController.began || BirdController.gameOver)
+        {
+            return;
+        }
+
         ground.transform.position = new Vector3(bird.transform.position.x + 6, -5, groundParent.transform.position.z);
     }
 
     private void FixedUpdate()
     {
+        if (!MenuController.began || BirdController.gameOver)
+        {
+            return;
+        }
+
         if (currXTile < Camera.main.transform.position.x + camWidth + tileWidth)
         {
             createTile();

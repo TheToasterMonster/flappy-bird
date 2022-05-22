@@ -7,38 +7,58 @@ public class BirdController : MonoBehaviour
 {
     public Vector2 speedMinMax;
     public float jumpForce;
+    public float idleJumpSpeed;
+    public float jumpAmplitude;
 
-    private bool gameOver;
+    public static bool gameOver;
 
-    public Action onPassPipe;
-
+    public static event Action onPassPipe;
     private Rigidbody2D body;
 
-    // Start is called before the first frame update
-    void Start()
+    private float adjustedCenterHeight;
+    private float fiveSixthsPi = (float)(Mathf.PI * 5.0 / 6.0);
+
+    private void Awake()
     {
         gameOver = false;
+
+        adjustedCenterHeight = TerrainController.groundHeight / 4;
+        transform.position = new Vector3(transform.position.x, adjustedCenterHeight, transform.position.z);
+
         body = GetComponent<Rigidbody2D>();
+        body.bodyType = RigidbodyType2D.Kinematic;
+
+        MenuController.onBeginGame += activateGravity;
+    }
+
+    private void OnDisable()
+    {
+        MenuController.onBeginGame -= activateGravity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameOver)
+        if (!MenuController.began || gameOver)
         {
             return;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            body.velocity = new Vector2(body.velocity.x, 0);
-            body.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+            applyImpulse();
         }
     }
 
     private void FixedUpdate()
     {
-        if (gameOver)
+        if (!MenuController.began && !gameOver)
+        {
+            float height = jumpAmplitude * (2 * Mathf.Abs(Mathf.Sin(Time.fixedTime * idleJumpSpeed + fiveSixthsPi)) - 1);
+            transform.position = new Vector3(transform.position.x, adjustedCenterHeight + height, transform.position.z);
+        }
+
+        if (!MenuController.began || gameOver)
         {
             return;
         }
@@ -57,5 +77,17 @@ public class BirdController : MonoBehaviour
         {
             onPassPipe();
         }
+    }
+
+    void activateGravity()
+    {
+        body.bodyType = RigidbodyType2D.Dynamic;
+        applyImpulse();
+    }
+
+    void applyImpulse()
+    {
+        body.velocity = new Vector2(body.velocity.x, 0);
+        body.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
     }
 }

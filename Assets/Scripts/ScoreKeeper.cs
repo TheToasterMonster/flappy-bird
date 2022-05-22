@@ -5,22 +5,33 @@ using TMPro;
 
 public class ScoreKeeper : MonoBehaviour
 {
-    public GameObject bird;
-
     public static int score;
     private TextMeshPro scoreText;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         score = 0;
-        bird.GetComponent<BirdController>().onPassPipe += increaseScore;
+        BirdController.onPassPipe += increaseScore;
         scoreText = GetComponent<TextMeshPro>();
+        scoreText.color = new Vector4(scoreText.color.r, scoreText.color.g, scoreText.color.b, 0f);
+
+        MenuController.onBeginGame += activate;
+    }
+
+    private void OnDisable()
+    {
+        BirdController.onPassPipe -= increaseScore;
+        MenuController.onBeginGame -= activate;
     }
 
     void increaseScore()
     {
         score++;
         scoreText.text = score.ToString();
+    }
+
+    void activate()
+    {
+        scoreText.color = new Vector4(scoreText.color.r, scoreText.color.g, scoreText.color.b, 1f);
     }
 }

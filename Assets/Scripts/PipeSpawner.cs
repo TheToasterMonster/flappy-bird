@@ -10,13 +10,12 @@ public class PipeSpawner : MonoBehaviour
     private float camWidth;
     private float adjustedCenterHeight;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         camWidth = Camera.main.orthographicSize * Camera.main.aspect;
         currX = 6f;
         adjustedCenterHeight = TerrainController.groundHeight / 4;
-        
+
         while (currX < Camera.main.transform.position.x + camWidth)
         {
             createPipe();
@@ -25,6 +24,11 @@ public class PipeSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!MenuController.began || BirdController.gameOver)
+        {
+            return;
+        }
+
         if (currX < Camera.main.transform.position.x + camWidth + distBetween)
         {
             createPipe();

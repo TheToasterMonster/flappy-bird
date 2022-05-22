@@ -10,20 +10,29 @@ public class PipeController : MonoBehaviour
 
     private GameObject top;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         cam = Camera.main;
-        camHalfWidth = cam.orthographicSize * cam.aspect;
-
         top = transform.GetChild(0).gameObject;
-        pipeHalfWidth = top.transform.localScale.x / 2;
 
         transform.position = new Vector3(transform.position.x, transform.position.y + Random.Range(-2f, 2f), transform.position.z);
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        camHalfWidth = cam.orthographicSize * cam.aspect;
+        pipeHalfWidth = top.transform.localScale.x / 2;
+
+    }
+
     private void FixedUpdate()
     {
+        if (!MenuController.began || BirdController.gameOver)
+        {
+            return;
+        }
+
         float pipeRightEdge = top.transform.position.x + pipeHalfWidth;
         float camLeftEdge = cam.transform.position.x - camHalfWidth;
         if (pipeRightEdge + 1 < camLeftEdge)

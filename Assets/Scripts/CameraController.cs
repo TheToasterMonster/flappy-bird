@@ -8,6 +8,11 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!MenuController.began || BirdController.gameOver)
+        {
+            return;
+        }
+
         transform.position = new Vector3(bird.transform.position.x + 6, 0, -10);
     }
 }
