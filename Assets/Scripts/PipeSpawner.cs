@@ -16,7 +16,7 @@ public class PipeSpawner : MonoBehaviour
         currX = 6f;
         adjustedCenterHeight = TerrainController.groundHeight / 4;
 
-        while (currX < Camera.main.transform.position.x + camWidth)
+        while (currX < Camera.main.transform.position.x + camWidth + distBetween)
         {
             createPipe();
         }

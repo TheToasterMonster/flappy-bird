@@ -31,12 +31,12 @@ public class TerrainController : MonoBehaviour
         backdropWidth = BackdropController.backdropWidth;
         groundHeight = ground.transform.localScale.y;
 
-        while (currXTile < Camera.main.transform.position.x + camWidth)
+        while (currXTile < Camera.main.transform.position.x + camWidth + tileWidth)
         {
             createTile();
         }
 
-        while (currXBackdrop < Camera.main.transform.position.x + camWidth)
+        while (currXBackdrop < Camera.main.transform.position.x + camWidth + backdropWidth)
         {
             createBackdrop();
         }
