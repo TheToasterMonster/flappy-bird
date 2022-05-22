@@ -23,7 +23,6 @@ public class PipeController : MonoBehaviour
     {
         camHalfWidth = cam.orthographicSize * cam.aspect;
         pipeHalfWidth = top.transform.localScale.x / 2;
-
     }
 
     private void FixedUpdate()

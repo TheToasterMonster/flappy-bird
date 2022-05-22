@@ -993,7 +993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5264c98a189946a99e1913f9198f3d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedMinMax: {x: 0.08, y: 0.15}
+  speedMinMax: {x: 3, y: 9}
+  pipesBeforeMaxSpeed: 200
   jumpForce: 8
   idleJumpSpeed: 4
   jumpAmplitude: 0.6

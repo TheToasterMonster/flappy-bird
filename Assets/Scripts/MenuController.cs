@@ -46,9 +46,9 @@ public class MenuController : MonoBehaviour
         }
         else if (!began && Input.GetKeyDown(KeyCode.Space))
         {
-            began = true;
             starterTextObject.SetActive(false);
             onBeginGame();
+            began = true;
         }
         else if (BirdController.gameOver && Input.GetKeyDown(KeyCode.R))
         {

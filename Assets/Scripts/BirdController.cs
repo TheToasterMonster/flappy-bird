@@ -6,6 +6,8 @@ using System;
 public class BirdController : MonoBehaviour
 {
     public Vector2 speedMinMax;
+    public float pipesBeforeMaxSpeed;
+
     public float jumpForce;
     public float idleJumpSpeed;
     public float jumpAmplitude;
@@ -63,7 +65,7 @@ public class BirdController : MonoBehaviour
             return;
         }
 
-        transform.position += Vector3.right * Mathf.Lerp(speedMinMax.x, speedMinMax.y, ScoreKeeper.score / 100f);
+        transform.position += Vector3.right * Mathf.Lerp(speedMinMax.x, speedMinMax.y, ScoreKeeper.score / pipesBeforeMaxSpeed) * Time.fixedDeltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
