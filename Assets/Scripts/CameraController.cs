@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public GameObject bird;
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (!MenuController.began || BirdController.gameOver)
         {
