@@ -65,7 +65,7 @@ public class BirdController : MonoBehaviour
             return;
         }
 
-        transform.position += Vector3.right * Mathf.Lerp(speedMinMax.x, speedMinMax.y, ScoreKeeper.score / pipesBeforeMaxSpeed) * Time.fixedDeltaTime;
+        body.velocity = new Vector2(Mathf.Lerp(speedMinMax.x, speedMinMax.y, ScoreKeeper.score / pipesBeforeMaxSpeed), body.velocity.y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
