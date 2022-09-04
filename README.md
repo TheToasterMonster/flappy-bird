@@ -1,10 +1,13 @@
 # Flappy Bird
-*work in progress*
-
 Flappy Bird clone made in Unity (2021.2.16f1). Pixel art made using Krita.
 
 ## Controls
-- Spacebar to flap
+- SPACE to flap
+- ESC for menu
+- R to restart game after game over
 
-## Current Progress
-![](Resources/Screenshots/demo.png)
+## Screenshots
+![](Resources/Screenshots/Start.png)\
+![](Resources/Screenshots/Playing.png)\
+![](Resources/Screenshots/GameOver.png)\
+![](Resources/Screenshots/Menu.png)
